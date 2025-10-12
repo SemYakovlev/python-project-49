@@ -1,4 +1,4 @@
-from random import randint
+from random import choice, randint
 
 import prompt
 
@@ -10,26 +10,27 @@ def main():
     print(f"Hello, {name}!")
 
     # 2 Сообщение с текстом про игру
-    print('Answer "yes" if the number is even, otherwise answer "no".')
+    print("What is the result of the expression?")
 
     # 3 Запуск раундов
-    def is_even(n):
-        return n % 2 == 0
+    operators = ["+", "-", "*"]
 
     for _ in range(3):
-        number = randint(1, 100)
-
+        num1 = randint(1, 100)
+        num2 = randint(1, 100)
+        oper = choice(operators)
         # Задаём вопрос
-        print(f"Question: {number}")
+        print(f"Question: {num1} {oper} {num2}")
 
-        if is_even(number):
-            correct_answer = "yes"
+        if oper == "+":
+            correct_answer = num1 + num2
+        elif oper == "-":
+            correct_answer = num1 - num2
         else:
-            correct_answer = "no"
-
+            correct_answer = num1 * num2
         # Получаем ответ и сравниваем с правильным
         user_answer = prompt.string("Your answer: ")
-        if user_answer == correct_answer:
+        if user_answer == str(correct_answer):
             print("Correct!")
         else:
             print(
