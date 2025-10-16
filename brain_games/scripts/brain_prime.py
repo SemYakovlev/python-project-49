@@ -14,9 +14,13 @@ def main():
 
     # 3 Запуск раундов
     def is_prime(n):
-        semi_num = int(n / 2)
-        for i in range(2, semi_num):
-            return n % i != 0
+        if n < 2:
+            return False
+        sqrt_num = int(n**0.5) + 1
+        for i in range(2, sqrt_num):
+            if n % i == 0:
+                return False
+        return True
 
     for _ in range(3):
         number = randint(1, 100)
