@@ -1,5 +1,7 @@
 from random import choice, randint
 
+Rules = "What is the result of the expression?"
+
 
 def get_round():  # Запуск раундов
     operators = ["+", "-", "*"]

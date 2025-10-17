@@ -2,7 +2,7 @@ import prompt
 
 from brain_games.welcome import welcome
 
-from brain_games.games.calc import get_round
+from brain_games.games.calc import get_round, Rules
 
 
 def game():
@@ -10,7 +10,7 @@ def game():
     name = welcome()
 
     # 2 Сообщение с текстом про игру
-    print("What is the result of the expression?")
+    print(Rules)
 
     # 3 Запуск раундов
     for _ in range(3):
