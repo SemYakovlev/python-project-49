@@ -1,25 +1,20 @@
-from brain_games.games.gcd import get_round, Rules
+from brain_games.games.gcd import get_round, RULES
 
 from brain_games.welcome import welcome
 
 import prompt
 
 
-# 1 Приветствуем и узнаём имя
 def game():
     name = welcome()
 
-    # 2 Сообщение с текстом про игру
-    print(Rules)
+    print(RULES)
 
-    # 3 Запуск раундов
     for _ in range(3):
         question, correct_answer = get_round()
 
-        # Задаём вопрос
         print(f"Question: {question}")
 
-        # Получаем ответ и сравниваем с правильным
         user_answer = prompt.string("Your answer: ")
         if user_answer == str(correct_answer):
             print("Correct!")
@@ -30,7 +25,6 @@ def game():
                 f"\nLet's try again, {name}!"
             )
             return
-    # 4 Выход победителем
     print(f"Congratulations, {name}!")
 
 

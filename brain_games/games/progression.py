@@ -1,25 +1,25 @@
 from random import randint
 
-Rules = "What number is missing in the progression?"
+RULES = "What number is missing in the progression?"
 
 
-def progression(start, step, length):
-    lst = []
+def generate_progression(start, step, length):
+    collection = []
     for i in range(length):
-        currentElement = start + i * step
-        lst.append(str(currentElement))
-    return lst
+        current_element = start + i * step
+        collection.append(str(current_element))
+    return collection
 
 
 def get_round():
     start = randint(0, 20)
     step = randint(1, 10)
     length = randint(5, 10)
-    gen_progr = progression(start, step, length)
+    progression = generate_progression(start, step, length)
 
     index = randint(1, length - 1)
-    correct_answer = gen_progr[index]
-    gen_progr[index] = ".."
+    correct_answer = progression[index]
+    progression[index] = ".."
 
-    question = " ".join(gen_progr)
+    question = " ".join(progression)
     return question, correct_answer
