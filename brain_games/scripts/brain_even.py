@@ -1,31 +1,22 @@
-from random import randint
+from brain_games.welcome import welcome
+
+from brain_games.games.even import get_round, Rules
 
 import prompt
 
 
-# 1 Приветствуем и узнаём имя
-def main():
-    print("Welcome to the Brain Games!")
-    name = prompt.string("May I have your name? ")
-    print(f"Hello, {name}!")
+def game():
+    # 1 Приветствуем и узнаём имя
+    name = welcome()
 
     # 2 Сообщение с текстом про игру
-    print('Answer "yes" if the number is even, otherwise answer "no".')
+    print(Rules)
 
     # 3 Запуск раундов
-    def is_even(n):
-        return n % 2 == 0
-
     for _ in range(3):
-        number = randint(1, 100)
+        number, correct_answer = get_round()
 
-        # Задаём вопрос
         print(f"Question: {number}")
-
-        if is_even(number):
-            correct_answer = "yes"
-        else:
-            correct_answer = "no"
 
         # Получаем ответ и сравниваем с правильным
         user_answer = prompt.string("Your answer: ")
@@ -40,6 +31,10 @@ def main():
             return
     # 4 Выход победителем
     print(f"Congratulations, {name}!")
+
+
+def main():
+    game()
 
 
 if __name__ == "__main__":

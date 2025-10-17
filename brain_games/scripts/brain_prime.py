@@ -1,34 +1,23 @@
-from random import randint
+from brain_games.welcome import welcome
+
+from brain_games.games.prime import get_round, Rules
 
 import prompt
 
 
 # 1 Приветствуем и узнаём имя
-def main():
-    print("Welcome to the Brain Games!")
-    name = prompt.string("May I have your name? ")
-    print(f"Hello, {name}!")
+def game():
+    name = welcome()
 
     # 2 Сообщение с текстом про игру
-    print('Answer "yes" if given number is prime. Otherwise answer "no".')
+    print(Rules)
 
     # 3 Запуск раундов
-    def is_prime(n):
-        if n < 2:
-            return False
-        sqrt_num = int(n**0.5) + 1
-        for i in range(2, sqrt_num):
-            if n % i == 0:
-                return False
-        return True
-
     for _ in range(3):
-        number = randint(1, 100)
+        correct_answer, question = get_round()
 
         # Задаём вопрос
-        print(f"Question: {number}")
-
-        correct_answer = "yes" if is_prime(number) else "no"
+        print(f"Question: {question}")
 
         # Получаем ответ и сравниваем с правильным
         user_answer = prompt.string("Your answer: ")
@@ -43,6 +32,10 @@ def main():
             return
     # 4 Выход победителем
     print(f"Congratulations, {name}!")
+
+
+def main():
+    game()
 
 
 if __name__ == "__main__":

@@ -1,28 +1,23 @@
-from random import randint
+from brain_games.games.gcd import get_round, Rules
+
+from brain_games.welcome import welcome
 
 import prompt
 
 
 # 1 Приветствуем и узнаём имя
-def main():
-    print("Welcome to the Brain Games!")
-    name = prompt.string("May I have your name? ")
-    print(f"Hello, {name}!")
+def game():
+    name = welcome()
 
     # 2 Сообщение с текстом про игру
-    print("Find the greatest common divisor of given numbers.")
+    print(Rules)
 
     # 3 Запуск раундов
     for _ in range(3):
-        num1 = randint(1, 100)
-        num2 = randint(1, 100)
-        a, b = num1, num2
-        while b != 0:
-            a, b = b, a % b
-        correct_answer = a
+        question, correct_answer = get_round()
 
         # Задаём вопрос
-        print(f"Question: {num1} {num2}")
+        print(f"Question: {question}")
 
         # Получаем ответ и сравниваем с правильным
         user_answer = prompt.string("Your answer: ")
@@ -37,6 +32,10 @@ def main():
             return
     # 4 Выход победителем
     print(f"Congratulations, {name}!")
+
+
+def main():
+    game()
 
 
 if __name__ == "__main__":

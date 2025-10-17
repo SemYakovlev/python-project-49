@@ -1,33 +1,23 @@
-from random import choice, randint
-
 import prompt
 
+from brain_games.welcome import welcome
 
-# 1 Приветствуем и узнаём имя
-def main():
-    print("Welcome to the Brain Games!")
-    name = prompt.string("May I have your name? ")
-    print(f"Hello, {name}!")
+from brain_games.games.calc import get_round
+
+
+def game():
+    # 1 Приветствуем и узнаём имя
+    name = welcome()
 
     # 2 Сообщение с текстом про игру
     print("What is the result of the expression?")
 
     # 3 Запуск раундов
-    operators = ["+", "-", "*"]
-
     for _ in range(3):
-        num1 = randint(1, 100)
-        num2 = randint(1, 100)
-        oper = choice(operators)
+        question, correct_answer = get_round()
         # Задаём вопрос
-        print(f"Question: {num1} {oper} {num2}")
+        print(f"Question: {question}")
 
-        if oper == "+":
-            correct_answer = num1 + num2
-        elif oper == "-":
-            correct_answer = num1 - num2
-        else:
-            correct_answer = num1 * num2
         # Получаем ответ и сравниваем с правильным
         user_answer = prompt.string("Your answer: ")
         if user_answer == str(correct_answer):
@@ -41,6 +31,10 @@ def main():
             return
     # 4 Выход победителем
     print(f"Congratulations, {name}!")
+
+
+def main():
+    game()
 
 
 if __name__ == "__main__":

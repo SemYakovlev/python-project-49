@@ -1,39 +1,24 @@
-from random import randint
+from brain_games.games.progression import get_round, Rules
+
+from brain_games.welcome import welcome
 
 import prompt
 
 
 # 1 Приветствуем и узнаём имя
-def main():
-    print("Welcome to the Brain Games!")
-    name = prompt.string("May I have your name? ")
-    print(f"Hello, {name}!")
+def game():
+    name = welcome()
 
     # 2 Сообщение с текстом про игру
-    print("What number is missing in the progression?")
+    print(Rules)
 
     # 3 Запуск раундов
-    def progression(start, step, length):
-        lst = []
-        for i in range(length):
-            currentElement = start + i * step
-            lst.append(str(currentElement))
-        return lst
 
     for _ in range(3):
-        start = randint(0, 20)
-        step = randint(1, 10)
-        length = randint(5, 10)
-        gen_progr = progression(start, step, length)
-
-        index = randint(1, length - 1)
-        correct_answer = gen_progr[index]
-        gen_progr[index] = ".."
-
-        quest = " ".join(gen_progr)
+        correct_answer, question = get_round()
 
         # Задаём вопрос
-        print(f"Question: {quest}")
+        print(f"Question: {question}")
 
         # Получаем ответ и сравниваем с правильным
         user_answer = prompt.string("Your answer: ")
@@ -48,6 +33,10 @@ def main():
             return
     # 4 Выход победителем
     print(f"Congratulations, {name}!")
+
+
+def main():
+    game()
 
 
 if __name__ == "__main__":
