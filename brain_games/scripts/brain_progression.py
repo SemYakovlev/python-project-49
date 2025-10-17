@@ -1,0 +1,43 @@
+from brain_games.games.progression import get_round, Rules
+
+from brain_games.welcome import welcome
+
+import prompt
+
+
+# 1 Приветствуем и узнаём имя
+def game():
+    name = welcome()
+
+    # 2 Сообщение с текстом про игру
+    print(Rules)
+
+    # 3 Запуск раундов
+
+    for _ in range(3):
+        question, correct_answer = get_round()
+
+        # Задаём вопрос
+        print(f"Question: {question}")
+
+        # Получаем ответ и сравниваем с правильным
+        user_answer = prompt.string("Your answer: ")
+        if user_answer == str(correct_answer):
+            print("Correct!")
+        else:
+            print(
+                f"'{user_answer}' is wrong answer ;(. "
+                f"Correct answer was '{correct_answer}'. "
+                f"\nLet's try again, {name}!"
+            )
+            return
+    # 4 Выход победителем
+    print(f"Congratulations, {name}!")
+
+
+def main():
+    game()
+
+
+if __name__ == "__main__":
+    main()
