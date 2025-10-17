@@ -15,7 +15,7 @@ def game():
     # 3 Запуск раундов
 
     for _ in range(3):
-        correct_answer, question = get_round()
+        question, correct_answer = get_round()
 
         # Задаём вопрос
         print(f"Question: {question}")
