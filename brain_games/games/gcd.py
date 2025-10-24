@@ -10,8 +10,8 @@ def gcd(a, b):
 
 
 def get_round():
-    MAX = randint(1, 100)
-    MIN = randint(1, 100)
-    correct_answer = gcd(MAX, MIN)
-    question = f"{MAX} {MIN}"
+    max_gcd = randint(1, 100)
+    min_gcd = randint(1, 100)
+    correct_answer = gcd(max_gcd, min_gcd)
+    question = f"{max_gcd} {min_gcd}"
     return question, correct_answer
